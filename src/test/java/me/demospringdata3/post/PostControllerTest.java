@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * 혹은 테스트용으로 프로퍼티즈 파일을 별개로 만들어서 사용하고 싶은 경우에는
  * 테스트 코드에 @ActiveProfiles("test")를 붙이고,
  * test 디렉토리 하위에 resources 디렉토리를 만들어서
- * application-test.properties 파일을 만들어준다.
+ * application-test.properties 파일을 만들어서
+ * application.properties에 있는 속성 중에 오버라이딩할 부분만 작성해 준다.
+ * 아무것도 작성하지 않으면 application.properties에 있는 속성을 그대로 사용하게 된다.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
