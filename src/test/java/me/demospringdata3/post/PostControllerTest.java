@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -41,7 +42,8 @@ class PostControllerTest {
 
         mockMvc.perform(get("/posts/" + post.getId()))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().string("jpa"));
     }
 
 }

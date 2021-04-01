@@ -20,10 +20,10 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}") // 원래 id는 문자열로 받지만
-    public Post getPost(@PathVariable Long id) { // Long형으로 데이터바인더가 기본적으로 바인딩해준다.
+    public String getPost(@PathVariable Long id) { // Long형으로 데이터바인더가 기본적으로 바인딩해준다.
         Optional<Post> byId = postRepository.findById(id);
         Post post = byId.get();
-        return post;
+        return post.getTitle();
     }
 
 }
