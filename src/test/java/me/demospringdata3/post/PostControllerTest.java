@@ -1,10 +1,16 @@
 package me.demospringdata3.post;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * 애플리케이션의 모든 빈이 다 등록이 되는 통합 테스트(integration test).
@@ -21,6 +27,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 class PostControllerTest {
 
+    @Autowired
+    MockMvc mockMvc;
 
+    @Autowired
+    PostRepository postRepository;
+
+    @Test
+    public void getPost() throws Exception {
+        Post post = new Post();
+        post.setTitle("jpa");
+        postRepository.save(post);
+
+        mockMvc.perform(get("/posts/" + post.getId()))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
 }
