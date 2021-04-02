@@ -371,6 +371,9 @@ void save() {
 </pre>
 위와 같이 파라미터로 넘긴 객체와 저장 후 반환 받은 객체는 다를 수 있다.<br/>
 때문에 실수를 줄이기 위해서는 무조건 반환 받은 객체를 사용하고 파라미터로 넘긴 객체는 더이상 사용하지 않는 것이 좋다. 
+<br/><br/><br/><br/>
 
+# 쿼리 메소드 
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
 
 <br/><br/><br/><br/>
