@@ -530,7 +530,11 @@ void getComment() {
     commentRepository.findById(1l); // Fetch 모드를 LAZY로 설정했기 때문에 LAZY 모드로 가져온다.
 }
 </pre>
-<br/>
+<br/><br/><br/><br/>
+
+# Projection
+
+
 
 
 <br/><br/><br/><br/>
