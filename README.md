@@ -438,23 +438,44 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#ex
 flush()를 해서 객체 상태를 데이터베이스에 동기화 시킨다. 이때 보통 update 쿼리가 자동적으로 실행이 된다. <br/>
 때문에 우리가 직접 update 쿼리 메소드를 만들어서 사용해야 하는 경우는 거의 없다. <br/>
 하지만 꼭 정의해서 사용해야 할 때에는 직접 정의해서 사용할 수도 있다. <br/>
+하지만 추천하지 않는 방법이다. <br/>
 <pre>
 /**
  * [ update 쿼리 메소드 ]
  */
-@Modifying // 조회가 아닌 수정하는 쿼리임을 표시. update 쿼리를 만들 때 붙여줘야 한다.
+// @Modifying // 조회가 아닌 수정하는 쿼리임을 표시. update 쿼리를 만들 때 붙여줘야 한다.
+@Modifying(clearAutomatically = true, flushAutomatically = true)
 @Query("UPDATE Post p Set p.title = ?1 WHERE p.id = ?2")
 int updateTitle(String title, Long id);
 </pre>
 <pre>
 @Test
 void updateTitle() {
-    Post spring = savePost();
-    int update = postRepository.updateTitle("hibernate", spring.getId()); // id를 가지고 title을 변경한다.
+    Post spring = savePost(); // Persistent 상태의 객체.
+    String hibernate = "hibernate";
+    int update = postRepository.updateTitle(hibernate, spring.getId()); // id를 가지고 title을 변경한다.
     assertThat(update).isEqualTo(1);
+
+    // spring이 Persistent 상태이기 때문에 DB에서 조회하지 않고 JPA가 캐싱하고 있던 것을 그대로 가져온다.
+    // 때문에 값이 변경되지 않은 상태 그대로이다.
+    Optional❮Post❯ byId = postRepository.findById(spring.getId()); // select를 하지 않는다.
+    assertThat(byId.get().getTitle()).isEqualTo(hibernate); // title은 여전히 'spring'이기 때문에 테스트가 깨진다.
+
+    /**
+     * update 쿼리 메소드에서
+     * '@Modifying(clearAutomatically = true, flushAutomatically = true)'를 붙이면 테스트가 깨지지 않는다.
+     *
+     * [ clearAutomatically ]
+     *  => update 쿼리를 실행한 이후에 Persistent context를 clear 해준다. (캐시를 비워준다. 때문에 이후에 조회할 때 DB에서 새로 읽어온다.)
+     *
+     * [ flushAutomatically ]
+     *  => update 쿼리 실행 이전에 Persistent context를 flush 해준다.
+     *
+     * 하지만 이 방법을 추천하지는 않는다.
+     * (이 방법으로 delete도 구현할 수 있기는 하다. 하지만 또 다른 문제가..)
+     */
 }
 </pre>
-
 <br/>
 
 <br/><br/><br/><br/>

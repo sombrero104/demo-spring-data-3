@@ -111,8 +111,10 @@ class PostRepositoryTest {
          *
          * [ flushAutomatically ]
          *  => update 쿼리 실행 이전에 Persistent context를 flush 해준다.
+         *
+         * 하지만 이 방법을 추천하지는 않는다.
+         * (이 방법으로 delete도 구현할 수 있기는 하다. 하지만 또 다른 문제가..)
          */
-
     }
 
 }
