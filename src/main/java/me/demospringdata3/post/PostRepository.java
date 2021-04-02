@@ -33,4 +33,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      */
     @Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = :title") // Named Parameter
     List<Post> findByTitle(@Param("title") String title, Sort sort);
+
 }

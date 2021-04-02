@@ -406,4 +406,15 @@ void findByTitle() {
 # Named Parameter와 SpEL
 <br/>
 
+### Named Parameter
+<pre>
+/**
+ * [ Named Parameter ]
+ * @Query에서 참조하는 매개변수를 '?1', '?2' 이렇게 채번으로 참조하는게 아니라
+ * 이름으로 ':title' 이렇게 참조할 수 있다.
+ */
+@Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = :title") // Named Parameter
+List❮Post❯ findByTitle(@Param("title") String title, Sort sort);
+</pre>
+
 <br/><br/><br/><br/>
