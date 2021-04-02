@@ -431,5 +431,9 @@ List❮Post❯ findByTitle(@Param("title") String title, Sort sort);
 </pre>
 SpEL에 대한 자세한 내용은 아래 URL 참조. <br/>
 https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions <br/>
+<br/><br/><br/><br/>
+
+# Update 쿼리 메소드
+<br/>
 
 <br/><br/><br/><br/>
