@@ -434,6 +434,11 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#ex
 <br/><br/><br/><br/>
 
 # Update 쿼리 메소드
+주로 Persistent 상태의 객체를 관리하다가 이 객체 상태에 변화가 일어났고, 이 변화를 DB에 싱크해야겠다라고 하는 시점에 flush()를 한다. <br/>
+flush()를 해서 객체 상태를 데이터베이스에 동기화 시킨다. 이때 보통 update 쿼리가 자동적으로 실행이 된다. <br/>
+때문에 우리가 직접 update 쿼리 메소드를 만들어서 사용해야 하는 경우는 거의 없다. <br/>
+하지만 꼭 정의해서 사용해야 할 때에는 직접 정의해서 사용할 수도 있다. <br/>
+
 <br/>
 
 <br/><br/><br/><br/>
