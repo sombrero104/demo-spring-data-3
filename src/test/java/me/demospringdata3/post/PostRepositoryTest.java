@@ -25,6 +25,7 @@ class PostRepositoryTest {
         Post post = new Post();
         post.setTitle("jpa");
         Post savedPost = postRepository.save(post);// persist() 호출, insert 쿼리 발생.
+        // 위와 같이 save()는 영속화되어 있는 객체를 리턴해 준다.
 
         assertThat(entityManager.contains(post)).isTrue(); // post도 영속화가 되고,
         assertThat(entityManager.contains(savedPost)).isTrue(); // savedPost도 영속화가 된다.
