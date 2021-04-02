@@ -36,7 +36,7 @@ class PostRepositoryTest {
         postUpdate.setId(post.getId());
         postUpdate.setTitle("hibernate");
         Post updatedPost = postRepository.save(postUpdate);// merge() 호출, update 쿼리 발생.
-        // merge()는 merge() 메소드에 넘긴 그 엔티티의 복사본을 만들고, 고
+        // merge()는 merge() 메소드에 넘긴 그 엔티티의 복사본을 만들고,
         // 그 복사본을 다시 Persistent 상태로 변경하고 그 복사본을 반환한다.
 
         assertThat(entityManager.contains(updatedPost)).isTrue(); // updatedPost는 영속화가 되고,
