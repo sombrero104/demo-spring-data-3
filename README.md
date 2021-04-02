@@ -298,5 +298,19 @@ void save() {
     assertThat(all.size()).isEqualTo(1);
 }
 </pre>
+SimpleJpaRepository 소스를 보면 새로운 객체(Transient 상태의 객체)일 경우에는 EntityManager.persist(), <br/>
+새로운 객체가 아닐 경우(Detached 상태의 객체)에는 EntityManager.merge()를 실행하는 것을 확인할 수 있다. 
+<pre>
+@Transactional
+public ❮S extends T❯ S save(S entity) {
+    Assert.notNull(entity, "Entity must not be null.");
+    if (this.entityInformation.isNew(entity)) {
+        this.em.persist(entity);
+        return entity;
+    } else {
+        return this.em.merge(entity);
+    }
+}
+</pre>
 
-<br/>
+<br/><br/><br/><br/>
