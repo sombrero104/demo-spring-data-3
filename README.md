@@ -494,7 +494,8 @@ void updateTitle2() {
 <br/><br/><br/><br/>
 
 # EntityGraph
-fetch 모드를 좀 더 유연하게 설정할 수 있는 기능을 제공한다. 
+Fetch 모드를 좀 더 유연하게 설정할 수 있는 기능을 제공한다. <br/>
+쿼리 메소드 마다 연관 관계의 Fetch 모드를 설정 할 수 있다. 
 <br/>
 
 
