@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post AS p WHERE p.title = ?1") // title이 첫번째 인자값과 같은 것. (JPQL)
+// @NamedNativeQuery() // (Native Query)
 public class Post {
 
     @Id @GeneratedValue
