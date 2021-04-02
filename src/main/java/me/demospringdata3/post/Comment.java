@@ -1,9 +1,6 @@
 package me.demospringdata3.post;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Comment {
@@ -13,7 +10,8 @@ public class Comment {
 
     private String comment;
 
-    @ManyToOne
+    // @ManyToOne(fetch = FetchType.EAGER) // @ManyToOne은 기본 Fetch 모드가 EAGER이다.
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
 }

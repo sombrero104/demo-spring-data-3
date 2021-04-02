@@ -34,6 +34,18 @@ class CommentRepositoryTest {
          *     where
          *         comment0_.id=?
          */
+        /**
+         * Comment에서 Post의 Fetch 모드를 Lazy로 바꾸면 comment만 가져온다.
+         * 만약 Comment의 Post에 접근하게 되면 그때서야 Post도 같이 조회하는 쿼리가 날아간다.
+         * select
+         *         comment0_.id as id1_0_0_,
+         *         comment0_.comment as comment2_0_0_,
+         *         comment0_.post_id as post_id3_0_0_
+         *     from
+         *         comment comment0_
+         *     where
+         *         comment0_.id=?
+         */
     }
 
 }
