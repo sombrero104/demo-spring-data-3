@@ -326,11 +326,11 @@ public ❮S extends T❯ S save(S entity) {
 자신이 원하는 판단 로직을 구현할 수도 있다. 
 <br/>
 
-#### EntityManager.persist()
+#### * EntityManager.persist()
 persist() 메소드에 넘긴 그 엔티티 객체를 Persistent 상태로 변경한다.
 <br/>
 
-#### EntityManager.merge()
+#### * EntityManager.merge()
 merge() 메소드에 넘긴 그 엔티티의 복사본을 만들고,<br/>
 그 복사본을 다시 Persistent 상태로 변경하고 그 복사본을 반환한다.
 <br/>
