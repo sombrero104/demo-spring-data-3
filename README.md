@@ -273,7 +273,7 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 여러가지 모든 예외를 SQLException 하나로 발생시켜서 SQLException 안의 코드값을 확인하고 <br/>
 실제로 어떤 에러인지 확인해야 하는 불편함이 있어서<br/>
 구체적으로 어떤 에러인지 알 수 있는 DataAccessException의 하위 클래스들 중 하나로 매핑해서<br/>
-클래스 이름만 봐도 알 수 있도록 만들었다. 
+클래스 이름만 봐도 알 수 있도록 만들었다. (그런데 JPA보다 하이버네이트가 발생시키는 예외가 좀 더 직관적..)
 <br/>
 
 <br/><br/><br/><br/>
