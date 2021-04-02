@@ -41,6 +41,14 @@ Converter와 매우 비슷한데 다른 점은 Formatter는 문자열 기반이�
 Interface Formatter❮T❯
     // (문자열을 T(the target type)타입으로 변환)
 </pre>
+아래와 같이 아이디를 파라미터로 받는 경우에는 아이디가 문자열이 아닐수도 있기 때문에 (현재 여기에서는 Long이다.)<br/>
+Formatter가 사용되지 않고, DomainClassConverter가 사용된다. 
+<pre>
+@GetMapping("/posts/{id}")
+public String getPost(@PathVariable("id") Post post) {
+    return post.getTitle();
+}
+</pre>
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/format/Formatter.html
 
 
