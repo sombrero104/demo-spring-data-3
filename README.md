@@ -415,6 +415,8 @@ void findByTitle() {
  */
 @Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = :title") // Named Parameter
 List❮Post❯ findByTitle(@Param("title") String title, Sort sort);
-</pre>
+</pre><br/>
+
+### SpEL
 
 <br/><br/><br/><br/>
