@@ -81,7 +81,7 @@ public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedRe
     Page❮Post❯ all = postRepository.findAll(pageable);
     return assembler.toModel(all);
 }
-</pre>
+</pre><br/>
 테스트를 하면 응답이 아래와 같이 나온다. 
 <pre>
 {
