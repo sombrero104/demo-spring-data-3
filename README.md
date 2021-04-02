@@ -375,5 +375,9 @@ void save() {
 
 # 쿼리 메소드 
 https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+<br/>
+
+# 쿼리 메소드 Sort
+<br/>
 
 <br/><br/><br/><br/>
