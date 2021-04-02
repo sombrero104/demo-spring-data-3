@@ -346,7 +346,7 @@ void save() {
 
     assertThat(entityManager.contains(post)).isTrue(); // post도 영속화가 되고,
     assertThat(entityManager.contains(savedPost)).isTrue(); // savedPost도 영속화가 된다.
-    assertThat(savedPost == post).isTrue(); // 여기에서는 post와 savedPost가 같다.
+    assertThat(savedPost == post).isTrue(); // 여기에서는 post와 savedPost가 같다. 하지만 다른 경우도 있다. 
 
     Post postUpdate = new Post();
     postUpdate.setId(post.getId());
@@ -363,7 +363,8 @@ void save() {
     assertThat(all.size()).isEqualTo(1);
 }
 </pre>
-
+위와 같이 파라미터로 넘긴 객체와 저장 후 반환 받은 객체는 다를 수 있다.<br/>
+때문에 실수를 줄이기 위해서는 무조건 반환 받은 객체를 사용하고 파라미터로 넘긴 객체는 더이상 사용하지 않는 것이 좋다. 
 
 
 <br/><br/><br/><br/>
