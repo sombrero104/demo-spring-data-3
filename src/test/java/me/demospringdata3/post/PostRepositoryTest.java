@@ -43,6 +43,9 @@ class PostRepositoryTest {
         assertThat(entityManager.contains(postUpdate)).isFalse(); // postUpdate는 영속화가 되지 않는다.
         assertThat(updatedPost == postUpdate).isFalse(); // updatedPost와 postUpdate는 같지 않다.
 
+        // postUpdate.setTitle("good luck"); // 파라미터로 넘긴 postUpdate는 영속화 상태가 아니기 때문에 변경되지 않는다.
+        updatedPost.setTitle("good luck"); // 반환 받은 updatedPost는 영속화 상태이기 때문에 변경된다.
+
         List<Post> all = postRepository.findAll();
         assertThat(all.size()).isEqualTo(1);
     }
