@@ -166,12 +166,15 @@ public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedRe
 </pre><br/>
 아래와 같이 HATEOAS를 사용하지 않을 경우에는
 <pre>
+/**
+ * HATEOAS를 사용하지 않을 경우. 
+ */
 @GetMapping("/posts")
 public Page❮Post❯ getPosts(Pageable pageable) {
     return postRepository.findAll(pageable);
 }
 </pre>
-아래와 같이 JSON 결과가 많이 다르게 나오는 것을 확인할 수 있다. 
+아래와 같이 JSON 결과가 다르게 나오는 것을 확인할 수 있다. 
 <pre>
 {
   "content": [

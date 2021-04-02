@@ -36,6 +36,9 @@ public class PostController {
         return post.getTitle();
     }
 
+    /**
+     * HATEOAS를 사용하지 않을 경우.
+     */
     @GetMapping("/posts")
     public Page<Post> getPosts(Pageable pageable) {
         return postRepository.findAll(pageable);
