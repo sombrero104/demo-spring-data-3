@@ -479,7 +479,7 @@ void updateTitle() {
 }
 </pre>
 <br/>
-그냥.. 위와 같이 update 쿼리 메소드를 만들지 않고, 아래처럼 사용하는게 간단하기도 하고 권장하는 방법이다.
+하지만 위와 같이 update 쿼리 메소드를 만들지 않고, 아래처럼 사용하는게 간단하기도 하고 권장하는 방법이다.<br/>
 <pre>
 @Test
 void updateTitle2() {
