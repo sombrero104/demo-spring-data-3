@@ -378,6 +378,29 @@ https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-me
 <br/>
 
 # 쿼리 메소드 Sort
+<pre>
+/**
+ * Sort의 정렬옵션에 들어갈 수 있는 문자열은 반드시 엔티티의 프로퍼티이거나 alias이어야 한다.
+ * 예를 들어, title은 Post 엔티티의 프로퍼티이므로 title로 정렬하는 것이 가능하다.
+ * 그리고 아래처럼 p.title의 alias인 pTitle로도 정렬이 가능하다.
+ * 프로퍼티 또는 alias가 아닌 경우에는 Sort로 사용할 수 없다. (예를 들어, 함수와 같은..)
+ * 하지만 JpaSort.unsafe()를 사용하면 함수도 사용할 수 있다.
+ */
+@Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = ?1")
+List❮Post❯ findByTitle(String title, Sort sort);
+</pre>
+<pre>
+@Test
+void findByTitle() {
+    savePost();
+    
+    // List❮Post❯ all = postRepository.findByTitle("Spring Data Jpa", Sort.by("title"));
+    // List❮Post❯ all = postRepository.findByTitle("Spring Data Jpa", Sort.by("LENGTH(title)")); // (X) 함수는 사용할 수 없다.
+    List❮Post❯ all = postRepository.findByTitle("Spring Data Jpa", JpaSort.unsafe("LENGTH(title)")); // (O) JpaSort.unsafe()를 사용하면 함수도 가능하다.
+
+    assertThat(all.size()).isEqualTo(1);
+}
+</pre>
 <br/>
 
 <br/><br/><br/><br/>
