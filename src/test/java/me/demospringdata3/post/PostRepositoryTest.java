@@ -117,4 +117,14 @@ class PostRepositoryTest {
          */
     }
 
+    @Test
+    void updateTitle2() {
+        Post spring = savePost();
+        spring.setTitle("hibernate"); // update
+        // findAll()하기 전에 DB에 싱크를 맞춰야 하므로 update 쿼리가 날아간다.
+
+        List<Post> all = postRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo("hibernate");
+    }
+
 }
