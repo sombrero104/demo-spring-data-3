@@ -3,6 +3,7 @@ package me.demospringdata3.post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -71,7 +72,14 @@ class PostRepositoryTest {
     void findByTitle() {
         savePost();
 
-        List<Post> all = postRepository.findByTitle("Spring Data Jpa");
+        // List<Post> all = postRepository.findByTitle("Spring Data Jpa");
+
+        /**
+         * Sort의 정렬옵션에 들어갈 수 있는 문자열은 반드시 엔티티의 프로퍼티이거나 alias이어야 한다.
+         * title은 Post 엔티티의 프로퍼티이므로 title로 정렬하는 것이 가능하다.
+         */
+        List<Post> all = postRepository.findByTitle("Spring Data Jpa", Sort.by("title"));
+
         assertThat(all.size()).isEqualTo(1);
     }
 
