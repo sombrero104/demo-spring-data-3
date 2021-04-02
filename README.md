@@ -417,6 +417,19 @@ void findByTitle() {
 List❮Post❯ findByTitle(@Param("title") String title, Sort sort);
 </pre><br/>
 
-### SpEL
+### SpEL (Spring Expression Language) 
+스프링 표현 언어. 
+<pre>
+/**
+ * [ SpEL ]
+ * 엔티티 이름 대신에 '#{#entityName}'를 써도 된다.
+ * 이곳은 Post에 대한 Repository이기 때문에 자동적으로 엔티티 이름을 Post로 인식한다.
+ * 장점은 엔티티 이름이 변경되었을 때 Repository에 있는 모든 쿼리의 엔티티 이름을 변경하지 않아도 된다는 장점이 있다.
+ */
+@Query("SELECT p, p.title AS pTitle FROM #{#entityName} AS p WHERE p.title = :title") // Named Parameter
+List❮Post❯ findByTitle(@Param("title") String title, Sort sort);
+</pre>
+SpEL에 대한 자세한 내용은 아래 URL 참조. <br/>
+https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions <br/>
 
 <br/><br/><br/><br/>

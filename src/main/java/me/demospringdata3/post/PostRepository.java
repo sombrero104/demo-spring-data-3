@@ -31,7 +31,16 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      * @Query에서 참조하는 매개변수를 '?1', '?2' 이렇게 채번으로 참조하는게 아니라
      * 이름으로 ':title' 이렇게 참조할 수 있다.
      */
-    @Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = :title") // Named Parameter
+    /*@Query("SELECT p, p.title AS pTitle FROM Post AS p WHERE p.title = :title") // Named Parameter
+    List<Post> findByTitle(@Param("title") String title, Sort sort);*/
+
+    /**
+     * [ SpEL ]
+     * 엔티티 이름 대신에 '#{#entityName}'를 써도 된다.
+     * 이곳은 Post에 대한 Repository이기 때문에 자동적으로 엔티티 이름을 Post로 인식한다.
+     * 장점은 엔티티 이름이 변경되었을 때 Repository에 있는 모든 쿼리의 엔티티 이름을 변경하지 않아도 된다는 장점이 있다.
+     */
+    @Query("SELECT p, p.title AS pTitle FROM #{#entityName} AS p WHERE p.title = :title") // Named Parameter
     List<Post> findByTitle(@Param("title") String title, Sort sort);
 
 }
