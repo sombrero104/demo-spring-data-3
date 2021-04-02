@@ -26,4 +26,9 @@ public class PostController {
         return post.getTitle();
     }
 
+    @GetMapping("/posts/{id}")
+    public String getPost(@PathVariable("id") Post post) {
+        return post.getTitle();
+    }
+
 }
