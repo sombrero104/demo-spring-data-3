@@ -303,7 +303,8 @@ SimpleJpaRepository 소스를 보면 새로운 객체(Transient 상태의 객체
 - persist(): Transient 상태의 객체를 Persistent 상태로 변경한다. <br/>
     (Transient 상태의 객체는 JPA와 하이버네이트 둘 다 이 객체에 대해서 모르는 상태이다. (이 객체의 아이디를 가지고 있지 않은 상태.)) 
 - merge(): Detached 상태의 객체를 Persistent 상태로 변경한다. <br/>
-    (Detached 상태는 한번이라도 Persistent 상태가 되었었던 객체. (이 객체의 아이디를 가지고 있는 상태.)) 
+    (Detached 상태는 한번이라도 Persistent 상태가 되었었던 객체. (이 객체의 아이디를 가지고 있는 상태.)) <br/>
+    merge()를 실행하더라도 데이터베이스에 해당 데이터가 없으면 insert()가 발생하기도 한다. 
 <pre>
 @Transactional
 public ❮S extends T❯ S save(S entity) {
