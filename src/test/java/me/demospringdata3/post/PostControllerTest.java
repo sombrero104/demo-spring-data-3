@@ -89,4 +89,20 @@ class PostControllerTest {
         assertThat(all.size()).isEqualTo(1);
     }
 
+    @Test
+    void save() {
+        Post post = new Post();
+        post.setId(1l);
+        post.setTitle("jpa");
+        postRepository.save(post); // insert 쿼리 발생.
+
+        Post postUpdate = new Post();
+        postUpdate.setId(1l);
+        postUpdate.setTitle("hibernate");
+        postRepository.save(postUpdate); // update 쿼리 발생.
+
+        List<Post> all = postRepository.findAll();
+        assertThat(all.size()).isEqualTo(1);
+    }
+
 }

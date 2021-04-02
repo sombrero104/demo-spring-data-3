@@ -261,6 +261,9 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 # [스프링 데이터 JPA 3 - 스프링 데이터 JPA]
 <br/>
 
+# JpaRepository 
+<br/>
+
 ### @EnableJpaRepositories
 - 스프링 부트 사용할 때는 사용하지 않아도 자동 설정 됨.
 - 스프링 부트 사용하지 않을 때는 @Configuration과 같이 사용.
@@ -274,6 +277,26 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 실제로 어떤 에러인지 확인해야 하는 불편함이 있어서<br/>
 구체적으로 어떤 에러인지 알 수 있는 DataAccessException의 하위 클래스들 중 하나로 매핑해서<br/>
 클래스 이름만 봐도 알 수 있도록 만들었다. (그런데 JPA보다 하이버네이트가 발생시키는 예외가 좀 더 직관적..)
-<br/>
-
 <br/><br/><br/><br/>
+
+# JpaRepository.save() 메소드
+새로운 객체일 경우에는 insert 쿼리, 새로운 객체가 아닐 경우에는 update 쿼리가 발생한다.
+<pre>
+@Test
+void save() {
+    Post post = new Post();
+    post.setId(1l);
+    post.setTitle("jpa");
+    postRepository.save(post); // insert 쿼리 발생.
+
+    Post postUpdate = new Post();
+    postUpdate.setId(1l);
+    postUpdate.setTitle("hibernate");
+    postRepository.save(postUpdate); // update 쿼리 발생.
+
+    List❮Post❯ all = postRepository.findAll();
+    assertThat(all.size()).isEqualTo(1);
+}
+</pre>
+
+<br/>
