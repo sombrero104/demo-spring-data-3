@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,6 +39,9 @@ class PostControllerTest {
 
     @Autowired
     PostRepository postRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Test
     void getPost() throws Exception {
@@ -93,7 +98,11 @@ class PostControllerTest {
     void save() {
         Post post = new Post();
         post.setTitle("jpa");
-        postRepository.save(post); // persist() 호출, insert 쿼리 발생.
+        Post savedPost = postRepository.save(post);// persist() 호출, insert 쿼리 발생.
+
+        assertThat(entityManager.contains(post)).isTrue();
+        assertThat(entityManager.contains(savedPost)).isTrue();
+        assertThat(savedPost == post);
 
         Post postUpdate = new Post();
         postUpdate.setId(post.getId());
