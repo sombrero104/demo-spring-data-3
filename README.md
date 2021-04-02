@@ -264,4 +264,10 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 ### @EnableJpaRepositories
 - 스프링 부트 사용할 때는 사용하지 않아도 자동 설정 됨.
 - 스프링 부트 사용하지 않을 때는 @Configuration과 같이 사용.
+<br/>
+
+### @Repository 애노테이션
+@Repository이 이미 붙어있기 때문에 직접 붙이지 않아도 된다. 
+<br/>
+
 <br/><br/><br/><br/>
