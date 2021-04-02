@@ -50,6 +50,11 @@ public String getPost(@PathVariable("id") Post post) {
 }
 </pre>
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/format/Formatter.html
+<br/><br/><br/><br/>
 
-
+### * 스프링 MVC HandlerMethodArgumentResolver
+스프링 MVC 핸들러 메소드의 매개변수로 받을 수 있는 객체를 확장하고 싶을 때 사용하는 인터페이스.<br/>
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/method/support/HandlerMethodArgumentResolver.html <br/>
+여기에 나와있는 구현체들을 모두 사용할 수 있다. (abstract 빼고) <br/>
+여기에 추가로 스프링 데이터 JPA의 웹 기능을 사용하면 Pageable과 Sort를 사용할 수도 있다. 
 <br/><br/><br/><br/>
