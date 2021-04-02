@@ -3,6 +3,7 @@ package me.demospringdata3.post;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -39,9 +40,6 @@ class PostControllerTest {
 
     @Autowired
     PostRepository postRepository;
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Test
     void getPost() throws Exception {
@@ -90,25 +88,6 @@ class PostControllerTest {
         postRepository.save(post); // 아이디가 없이 저장하려고 하기 때문에 에러 발생.
         // 위에서 아예 저장도 안되기 때문에
         // 아래처럼 조회하는 코드도 작성해준다.
-        List<Post> all = postRepository.findAll();
-        assertThat(all.size()).isEqualTo(1);
-    }
-
-    @Test
-    void save() {
-        Post post = new Post();
-        post.setTitle("jpa");
-        Post savedPost = postRepository.save(post);// persist() 호출, insert 쿼리 발생.
-
-        assertThat(entityManager.contains(post)).isTrue();
-        assertThat(entityManager.contains(savedPost)).isTrue();
-        assertThat(savedPost == post);
-
-        Post postUpdate = new Post();
-        postUpdate.setId(post.getId());
-        postUpdate.setTitle("hibernate");
-        postRepository.save(postUpdate); // merge() 호출, update 쿼리 발생.
-
         List<Post> all = postRepository.findAll();
         assertThat(all.size()).isEqualTo(1);
     }
