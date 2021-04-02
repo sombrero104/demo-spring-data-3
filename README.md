@@ -268,7 +268,8 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 
 ### @Repository 애노테이션
 @Repository이 이미 붙어있기 때문에 직접 붙이지 않아도 된다. <br/>
-구현체인 SimpleJpaRepository에 이미 붙어있기 때문.. 
+구현체인 SimpleJpaRepository에 이미 붙어있기 때문.. <br/>
+@Repository는 SQLException 또는 JPA 관련 예외를 스프링의 DataAccessException으로 변환 해준다. 
 <br/>
 
 <br/><br/><br/><br/>
