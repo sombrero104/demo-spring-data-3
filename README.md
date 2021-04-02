@@ -300,7 +300,8 @@ void save() {
 </pre>
 SimpleJpaRepository 소스를 보면 새로운 객체(Transient 상태의 객체)일 경우에는 EntityManager.persist(), <br/>
 새로운 객체가 아닐 경우(Detached 상태의 객체)에는 EntityManager.merge()를 실행하는 것을 확인할 수 있다. 
-- persist(): Transient 상태의 객체를 Persistent 상태로 변경한다.
+- persist(): Transient 상태의 객체를 Persistent 상태로 변경한다. <br/>
+    (Transient 상태의 객체는 JPA와 하이버네이트 둘 다 이 객체에 대해서 모르는 상태이다.) 
 - merge(): Detached 상태의 객체를 Persistent 상태로 변경한다. 
 <pre>
 @Transactional
