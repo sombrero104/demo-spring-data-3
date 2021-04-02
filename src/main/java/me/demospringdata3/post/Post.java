@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post AS p WHERE p.title = ?1") // title이 첫번째 인자값과 같은 것. (JPQL)
-// @NamedNativeQuery() // (Native Query)
+// @NamedNativeQuery(name  = "",  query = "") // (Native Query로 사용하는 방법.)
 public class Post {
 
     @Id @GeneratedValue
