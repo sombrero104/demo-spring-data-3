@@ -1,5 +1,6 @@
 package me.demospringdata3.post;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -7,8 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.is;
+import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.is;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -69,6 +73,20 @@ class PostControllerTest {
             postRepository.save(post);
             postsCount--;
         }
+    }
+
+    /**
+     * Post 엔티티에서 id에 @GeneratedValue를 세팅하지 않고 테스트.
+     */
+    @Test
+    void crud() {
+        Post post = new Post();
+        post.setTitle("jpa");
+        postRepository.save(post); // 아이디가 없이 저장하려고 하기 때문에 에러 발생.
+        // 위에서 아예 저장도 안되기 때문에
+        // 아래처럼 조회하는 코드도 작성해준다.
+        List<Post> all = postRepository.findAll();
+        assertThat(all.size()).isEqualTo(1);
     }
 
 }
