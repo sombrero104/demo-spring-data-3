@@ -71,6 +71,7 @@ HATEOAS 의존성을 추가해 준다.
     ❮artifactId❯spring-boot-starter-hateoas❮/artifactId❯
 ❮/dependency❯
 </pre>
+그리고 아래와 같이 PagedResourcesAssembler를 받도록 해준다. 
 <pre>
 /**
  * HATEOAS를 사용할 경우. (HATEOAS 의존성을 추가한 경우.)
@@ -81,5 +82,87 @@ public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedRe
     return assembler.toModel(all);
 }
 </pre>
+테스트를 하면 응답이 아래와 같이 나온다. 
+<pre>
+{
+  "_embedded": {
+    "postList": [
+      {
+        "id": 90,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 92,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 96,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 97,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 98,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 99,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 100,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 89,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 78,
+        "title": "jpa",
+        "created": null
+      },
+      {
+        "id": 81,
+        "title": "jpa",
+        "created": null
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "http://localhost/posts/?page=0&size=10&sort=created,desc&sort=title,asc"
+    },
+    "prev": {
+      "href": "http://localhost/posts/?page=2&size=10&sort=created,desc&sort=title,asc"
+    },
+    "self": {
+      "href": "http://localhost/posts/?page=3&size=10&sort=created,desc&sort=title,asc"
+    },
+    "next": {
+      "href": "http://localhost/posts/?page=4&size=10&sort=created,desc&sort=title,asc"
+    },
+    "last": {
+      "href": "http://localhost/posts/?page=9&size=10&sort=created,desc&sort=title,asc"
+    }
+  },
+  "page": {
+    "size": 10,
+    "totalElements": 100,
+    "totalPages": 10,
+    "number": 3
+  }
+}
+</pre>
 
-<br/>
+<br/><br/><br/><br/>
