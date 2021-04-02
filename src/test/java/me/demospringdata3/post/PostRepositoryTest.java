@@ -63,10 +63,11 @@ class PostRepositoryTest {
         assertThat(all.size()).isEqualTo(1);
     }
 
-    private void savePost() {
+    private Post savePost() {
         Post post = new Post();
         post.setTitle("Spring Data Jpa");
         Post savedPost = postRepository.save(post);
+        return savedPost;
     }
 
     @Test
@@ -86,6 +87,13 @@ class PostRepositoryTest {
         List<Post> all = postRepository.findByTitle("Spring Data Jpa", JpaSort.unsafe("LENGTH(title)")); // (O) JpaSort.unsafe()를 사용하면 함수도 가능하다.
 
         assertThat(all.size()).isEqualTo(1);
+    }
+
+    @Test
+    void updateTitle() {
+        Post spring = savePost();
+        int update = postRepository.updateTitle("hibernate", spring.getId()); // id를 가지고 title을 변경한다.
+        assertThat(update).isEqualTo(1);
     }
 
 }
