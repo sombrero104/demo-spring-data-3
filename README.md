@@ -64,4 +64,22 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 <br/><br/><br/><br/>
 
 # Web 4부: HATEOAS
+HATEOAS 의존성을 추가해 준다. 
+<pre>
+❮dependency❯
+    ❮groupId❯org.springframework.boot❮/groupId❯
+    ❮artifactId❯spring-boot-starter-hateoas❮/artifactId❯
+❮/dependency❯
+</pre>
+<pre>
+/**
+ * HATEOAS를 사용할 경우. (HATEOAS 의존성을 추가한 경우.)
+ */
+@GetMapping("/posts")
+public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedResourcesAssembler❮Post❯ assembler) {
+    Page❮Post❯ all = postRepository.findAll(pageable);
+    return assembler.toModel(all);
+}
+</pre>
+
 <br/>
