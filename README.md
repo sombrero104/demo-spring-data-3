@@ -35,9 +35,11 @@ public String getPost(@PathVariable("id") Post post) {
 <br/><br/>
 
 ### * Formatter
+'어떠한 문자열을 어떠한 타입으로 바꿀 것인가.' <br/>
 Converter와 매우 비슷한데 다른 점은 Formatter는 문자열 기반이라는 것이다. 
 <pre>
 Interface Formatter❮T❯
+    // (문자열을 T(the target type)타입으로 변환)
 </pre>
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/format/Formatter.html
 
