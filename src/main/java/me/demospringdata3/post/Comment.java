@@ -2,6 +2,12 @@ package me.demospringdata3.post;
 
 import javax.persistence.*;
 
+/**
+ * @NamedEntityGraph
+ *  => @Entity에서 재사용할 여러 엔티티 그룹을 정의할 때 사용.
+ */
+/*@NamedEntityGraph(name = "Comment.post",
+        attributeNodes = @NamedAttributeNode("post"))*/
 @Entity
 public class Comment {
 

@@ -54,6 +54,10 @@ class CommentRepositoryTest {
          *     where
          *         comment0_.id=?
          */
+
+        commentRepository.getById(1l); // @EntityGraph를 사용했기 때문에 EAGER 모드로 가져온다.
+        System.out.println("================================");
+        commentRepository.findById(1l); // Fetch 모드를 LAZY로 설정했기 때문에 LAZY 모드로 가져온다.
     }
 
 }

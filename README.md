@@ -495,7 +495,41 @@ void updateTitle2() {
 
 # EntityGraph
 Fetch 모드를 좀 더 유연하게 설정할 수 있는 기능을 제공한다. <br/>
-쿼리 메소드 마다 연관 관계의 Fetch 모드를 설정 할 수 있다. 
+쿼리 메소드 마다 연관 관계의 Fetch 모드를 설정 할 수 있다. <br/>
+각각의 다른 쿼리 메소드 마다 다른 Fetch 모드 전략을 다르게 설정할 수 있다는 장점이 있다. <br/>
+<pre>
+/**
+ * @NamedEntityGraph
+ *  => @Entity에서 재사용할 여러 엔티티 그룹을 정의할 때 사용.
+ */
+/*@NamedEntityGraph(name = "Comment.post",
+        attributeNodes = @NamedAttributeNode("post"))*/
+@Entity
+public class Comment {
+    // @ManyToOne(fetch = FetchType.EAGER) // @ManyToOne은 기본 Fetch 모드는 EAGER이다.
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Post post;
+    ...
+}
+</pre>
+<pre>
+public interface CommentRepository extends JpaRepository❮Comment, Long❯ {
+
+    // @EntityGraph(value = "Comment.post") // Comment의 Post를 EAGER 모드로 가져오게 된다.
+    @EntityGraph(attributePaths = "post") // @NamedEntityGraph로 이름 설정없이 이렇게 한줄로 사용해도 된다. 
+    Optional❮Comment❯ getById(Long id);
+
+}
+</pre>
+<pre>
+@Test
+void getComment() {
+    ...
+    commentRepository.getById(1l); // @EntityGraph를 사용했기 때문에 EAGER 모드로 가져온다.
+    System.out.println("================================");
+    commentRepository.findById(1l); // Fetch 모드를 LAZY로 설정했기 때문에 LAZY 모드로 가져온다.
+}
+</pre>
 <br/>
 
 
