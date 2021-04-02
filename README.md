@@ -267,7 +267,8 @@ public Page❮Post❯ getPosts(Pageable pageable) {
 <br/>
 
 ### @Repository 애노테이션
-@Repository이 이미 붙어있기 때문에 직접 붙이지 않아도 된다. 
+@Repository이 이미 붙어있기 때문에 직접 붙이지 않아도 된다. <br/>
+구현체인 SimpleJpaRepository에 이미 붙어있기 때문.. 
 <br/>
 
 <br/><br/><br/><br/>
