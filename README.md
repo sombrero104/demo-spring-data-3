@@ -81,7 +81,7 @@ public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedRe
     Page❮Post❯ all = postRepository.findAll(pageable);
     return assembler.toModel(all);
 }
-</pre><br/>
+</pre><br/> 
 테스트를 하면 응답이 아래와 같이 나온다. 
 <pre>
 {
@@ -162,6 +162,95 @@ public PagedModel❮EntityModel❮Post❯❯ getPosts(Pageable pageable, PagedRe
     "totalPages": 10,
     "number": 3
   }
+}
+</pre><br/>
+아래와 같이 HATEOAS를 사용하지 않을 경우에는
+<pre>
+@GetMapping("/posts")
+public Page❮Post❯ getPosts(Pageable pageable) {
+    return postRepository.findAll(pageable);
+}
+</pre>
+아래와 같이 JSON 결과가 많이 다르게 나오는 것을 확인할 수 있다. 
+<pre>
+{
+  "content": [
+    {
+      "id": 91,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 98,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 89,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 96,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 99,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 100,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 101,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 97,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 80,
+      "title": "jpa",
+      "created": null
+    },
+    {
+      "id": 83,
+      "title": "jpa",
+      "created": null
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "unsorted": false,
+      "sorted": true,
+      "empty": false
+    },
+    "offset": 30,
+    "pageNumber": 3,
+    "pageSize": 10,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalElements": 101,
+  "totalPages": 11,
+  "last": false,
+  "numberOfElements": 10,
+  "number": 3,
+  "size": 10,
+  "sort": {
+    "unsorted": false,
+    "sorted": true,
+    "empty": false
+  },
+  "first": false,
+  "empty": false
 }
 </pre>
 

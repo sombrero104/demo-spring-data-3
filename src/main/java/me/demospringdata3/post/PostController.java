@@ -36,18 +36,18 @@ public class PostController {
         return post.getTitle();
     }
 
-    /*@GetMapping("/posts")
+    @GetMapping("/posts")
     public Page<Post> getPosts(Pageable pageable) {
         return postRepository.findAll(pageable);
-    }*/
+    }
 
     /**
      * HATEOAS를 사용할 경우. (HATEOAS 의존성을 추가한 경우.)
      */
-    @GetMapping("/posts")
+    /*@GetMapping("/posts")
     public PagedModel<EntityModel<Post>> getPosts(Pageable pageable, PagedResourcesAssembler<Post> assembler) {
         Page<Post> all = postRepository.findAll(pageable);
         return assembler.toModel(all);
-    }
+    }*/
 
 }
