@@ -60,7 +60,7 @@ class PostControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].title", is("jpa")));
-                    // $.content[0].title => json 배열 중 0번째의 title 값.
+                    // $.content[0].title => json 배열의 내용 중 0번째의 title 값.
     }
 
 }
