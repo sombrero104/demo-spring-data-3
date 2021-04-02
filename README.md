@@ -62,3 +62,6 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 여기에 추가로 스프링 데이터 JPA의 웹 기능을 사용하면 Pageable과 Sort를 사용할 수도 있다. <br/>
 (주로 Pageable을 사용하고 Sort는 거의 사용하지 않는다. Sort만 사용하게 되면 모든 내용을 가져와서 소팅만 하기 때문..)
 <br/><br/><br/><br/>
+
+# Web 4부: HATEOAS
+<br/>
