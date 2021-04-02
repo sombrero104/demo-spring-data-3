@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.JpaSort;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -91,9 +92,27 @@ class PostRepositoryTest {
 
     @Test
     void updateTitle() {
-        Post spring = savePost();
-        int update = postRepository.updateTitle("hibernate", spring.getId()); // id를 가지고 title을 변경한다.
+        Post spring = savePost(); // Persistent 상태의 객체.
+        String hibernate = "hibernate";
+        int update = postRepository.updateTitle(hibernate, spring.getId()); // id를 가지고 title을 변경한다.
         assertThat(update).isEqualTo(1);
+
+        // spring이 Persistent 상태이기 때문에 DB에서 조회하지 않고 JPA가 캐싱하고 있던 것을 그대로 가져온다.
+        // 때문에 값이 변경되지 않은 상태 그대로이다.
+        Optional<Post> byId = postRepository.findById(spring.getId()); // select를 하지 않는다.
+        assertThat(byId.get().getTitle()).isEqualTo(hibernate); // title은 여전히 'spring'이기 때문에 테스트가 깨진다.
+
+        /**
+         * update 쿼리 메소드에서
+         * '@Modifying(clearAutomatically = true, flushAutomatically = true)'를 붙이면 테스트가 깨지지 않는다.
+         *
+         * [ clearAutomatically ]
+         *  => update 쿼리를 실행한 이후에 Persistent context를 clear 해준다. (캐시를 비워준다. 때문에 이후에 조회할 때 DB에서 새로 읽어온다.)
+         *
+         * [ flushAutomatically ]
+         *  => update 쿼리 실행 이전에 Persistent context를 flush 해준다.
+         */
+
     }
 
 }

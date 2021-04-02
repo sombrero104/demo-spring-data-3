@@ -2,6 +2,7 @@ package me.demospringdata3.post;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -46,6 +47,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     /**
      * [ update 쿼리 메소드 ]
      */
-    int updateTitle(String hibernate, Long id);
+    // @Modifying // 조회가 아닌 수정하는 쿼리임을 표시. update 쿼리를 만들 때 붙여줘야 한다.
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("UPDATE Post p Set p.title = ?1 WHERE p.id = ?2")
+    int updateTitle(String title, Long id);
 
 }

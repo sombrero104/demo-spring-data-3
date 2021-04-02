@@ -438,6 +438,22 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#ex
 flush()를 해서 객체 상태를 데이터베이스에 동기화 시킨다. 이때 보통 update 쿼리가 자동적으로 실행이 된다. <br/>
 때문에 우리가 직접 update 쿼리 메소드를 만들어서 사용해야 하는 경우는 거의 없다. <br/>
 하지만 꼭 정의해서 사용해야 할 때에는 직접 정의해서 사용할 수도 있다. <br/>
+<pre>
+/**
+ * [ update 쿼리 메소드 ]
+ */
+@Modifying // 조회가 아닌 수정하는 쿼리임을 표시. update 쿼리를 만들 때 붙여줘야 한다.
+@Query("UPDATE Post p Set p.title = ?1 WHERE p.id = ?2")
+int updateTitle(String title, Long id);
+</pre>
+<pre>
+@Test
+void updateTitle() {
+    Post spring = savePost();
+    int update = postRepository.updateTitle("hibernate", spring.getId()); // id를 가지고 title을 변경한다.
+    assertThat(update).isEqualTo(1);
+}
+</pre>
 
 <br/>
 
