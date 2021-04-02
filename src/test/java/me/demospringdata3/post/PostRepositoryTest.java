@@ -53,4 +53,14 @@ class PostRepositoryTest {
         assertThat(all.size()).isEqualTo(1);
     }
 
+    @Test
+    void findByTitleStartsWith() {
+        Post post = new Post();
+        post.setTitle("Spring Data Jpa");
+        Post savedPost = postRepository.save(post);
+
+        List<Post> all = postRepository.findByTitleStartsWith("Spring");
+        assertThat(all.size()).isEqualTo(1);
+    }
+
 }
