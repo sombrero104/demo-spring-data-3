@@ -317,4 +317,13 @@ public ❮S extends T❯ S save(S entity) {
     }
 }
 </pre>
+
+#### * Transient인지 Detached인지 어떻게 판단하는가?
+- 엔티티의 @Id 프로퍼티를 찾는다. <br/>
+해당 프로퍼티가 null이면 Transient 상태로 판단하고, id가 null이 아니면 Detached 상태로 판단한다.
+- 엔티티가 Persistable 인터페이스를 구현하고 있다면 isNew() 메소드에 위임한다.
+- JpaRepositoryFactory를 상속받는 클래스를 만들고 getEntityInformation()을 오버라이딩해서 <br/>
+자신이 원하는 판단 로직을 구현할 수도 있다. 
+
+
 <br/><br/><br/><br/>

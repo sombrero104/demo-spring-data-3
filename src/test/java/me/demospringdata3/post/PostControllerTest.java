@@ -92,14 +92,13 @@ class PostControllerTest {
     @Test
     void save() {
         Post post = new Post();
-        post.setId(1l);
         post.setTitle("jpa");
-        postRepository.save(post); // insert 쿼리 발생.
+        postRepository.save(post); // persist() 호출, insert 쿼리 발생.
 
         Post postUpdate = new Post();
-        postUpdate.setId(1l);
+        postUpdate.setId(post.getId());
         postUpdate.setTitle("hibernate");
-        postRepository.save(postUpdate); // update 쿼리 발생.
+        postRepository.save(postUpdate); // merge() 호출, update 쿼리 발생.
 
         List<Post> all = postRepository.findAll();
         assertThat(all.size()).isEqualTo(1);
