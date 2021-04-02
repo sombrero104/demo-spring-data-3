@@ -256,5 +256,12 @@ public Page❮Post❯ getPosts(Pageable pageable) {
   "empty": false
 }
 </pre>
+<br/><br/><br/><br/>
 
+# [스프링 데이터 JPA 3 - 스프링 데이터 JPA]
+<br/>
+
+### @EnableJpaRepositories
+- 스프링 부트 사용할 때는 사용하지 않아도 자동 설정 됨.
+- 스프링 부트 사용하지 않을 때는 @Configuration과 같이 사용.
 <br/><br/><br/><br/>
