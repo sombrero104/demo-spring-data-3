@@ -533,8 +533,8 @@ void getComment() {
 <br/><br/><br/><br/>
 
 # Projection
-
-
+엔티티의 일부 데이터만 가져오기.
+<br/>
 
 
 <br/><br/><br/><br/>
