@@ -113,7 +113,7 @@ class CommentRepositoryTest {
          *         post1_.id=?
          */
         /**
-         * 4. default 메소드를 사용하는 방법 (Closed 프로젝션 + Open 프로젝션)
+         * 4. default 메소드를 사용하는 방법 (Closed 프로젝션 + Open 프로젝션) (추천)
          * Closed 프로젝션의 장점(특정 컬럼만 select)과 Open 프로젝션의 장점(커스텀한 구현체를 만들어서 메소드를 추가)을 다 사용할 수 있는 방법.
          */
 
