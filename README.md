@@ -808,3 +808,9 @@ public void specs() {
 </pre>
 <br/><br/><br/><br/>
 
+# Query by Example
+QBE는 필드 이름을 작성할 필요없이(?) 단순한 인터페이스를 통해 <br/>
+동적으로 쿼리를 만드는 기능을 제공하는 사용자 친화적인 쿼리 기술이다. 
+
+
+<br/><br/><br/><br/>
