@@ -699,7 +699,8 @@ QueryDSL과 비슷하면서 세팅이 좀 번거롭고, 세팅을 하고나면 �
 </pre>
 그리고 Repository에서 JpaSpecificationExecutor<T>를 상속 받도록 해준다. 
 <pre>
-public interface CommentRepository extends JpaRepository❮Comment, Long❯, JpaSpecificationExecutor❮Comment❯ {
+public interface CommentRepository 
+        extends JpaRepository❮Comment, Long❯, JpaSpecificationExecutor❮Comment❯ {
 }
 </pre>
 
