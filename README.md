@@ -636,7 +636,15 @@ void getComment() {
 
 # Specifications
 에릭 에반스의 책 DDD에서 언급하는 Specification 개념을 차용한 것으로 <br/>
-QueryDSL의 Predicate와 비슷하다. 
+QueryDSL의 Predicate와 비슷하다. <br/>
+QueryDSL과 비슷하면서 세팅이 좀 번거롭고, 세팅을 하고나면 어떠한 조건절을 스펙으로 정의할 수 있다. <br/>
+예를 들어, Comment를 예로 들면 베스트 Comment를 하나의 스펙으로 정의하고, <br/>
+또 '좋아요'가 10개 이상인 Comment를 또 다른 하나의 스펙으로 정의하고,<br/>
+이 두 스펙을 조합해서 사용할 수도 있다.<br/>
+- 베스트 Comment이면서(and) '좋아요'가 10개 이상인 것.
+- 베스트 Comment이거나(or) '좋아요'가 이상인 것.
+
+이런식으로 쿼리를 만들 수 있다.
 <br/>
 
 <br/><br/><br/><br/>
