@@ -646,5 +646,23 @@ QueryDSL과 비슷하면서 세팅이 좀 번거롭고, 세팅을 하고나면 �
 
 이런식으로 쿼리를 만들 수 있다.
 <br/>
+먼저 'JPA Model Generator' 의존성을 추가해 준다. 
+<pre>
+❮!— [ JPA Model Generator ]
+    타입 세이프(type safe)한 쿼리를 제공.
+    보통 이렇게 타입 세이프한 쿼리를 제공하는 라이브러리들은
+    엔티티 클래스 기반으로 코드 제너레이션을 해서
+    그 프로퍼티들을 타입 세이프하게 쓸 수 있게 도와준다.
+
+    인텔리제이의 'Preferences ❯ Annotation Processors' 에서
+    Enable annotation processing도 체크되어 있어야 한다.
+    그리고 Annotation Processors 에서 + 버튼을 누르고
+    'org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor'도 추가해 준다.
+--❯
+❮dependency❯
+    ❮groupId❯org.hibernate❮/groupId❯
+    ❮artifactId❯hibernate-jpamodelgen❮/artifactId❯
+❮/dependency❯
+</pre>
 
 <br/><br/><br/><br/>
