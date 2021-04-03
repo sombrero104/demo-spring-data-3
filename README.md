@@ -635,6 +635,8 @@ void getComment() {
 <br/><br/><br/><br/>
 
 # Specifications
+에릭 에반스의 책 DDD에서 언급하는 Specification 개념을 차용한 것으로 <br/>
+QueryDSL의 Predicate와 비슷하다. 
 <br/>
 
 <br/><br/><br/><br/>
