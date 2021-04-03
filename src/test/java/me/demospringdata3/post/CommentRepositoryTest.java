@@ -82,7 +82,7 @@ class CommentRepositoryTest {
          *         post1_.id=?
          */
         /**
-         * 프로젝션을 사용하면 특정 컬럼만 select 한다.
+         * Closed 프로젝션을 사용하면 특정 컬럼만 select 한다.
          * select
          *         comment0_.comment as col_0_0_,
          *         comment0_.up as col_1_0_,
@@ -95,7 +95,23 @@ class CommentRepositoryTest {
          *     where
          *         post1_.id=?
          */
-
+        /**
+         * Open 프로젝션을 사용하면 일단 다 select해서 가져온다.
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     left outer join
+         *         post post1_
+         *             on comment0_.post_id=post1_.id
+         *     where
+         *         post1_.id=?
+         */
     }
 
 }
