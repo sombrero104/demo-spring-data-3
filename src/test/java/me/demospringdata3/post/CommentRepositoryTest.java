@@ -55,9 +55,33 @@ class CommentRepositoryTest {
          *         comment0_.id=?
          */
 
-        commentRepository.getById(1l); // @EntityGraph를 사용했기 때문에 EAGER 모드로 가져온다.
+        /*commentRepository.getById(1l); // @EntityGraph를 사용했기 때문에 EAGER 모드로 가져온다.
         System.out.println("================================");
         commentRepository.findById(1l); // Fetch 모드를 LAZY로 설정했기 때문에 LAZY 모드로 가져온다.
+        */
+
+        /**
+         * [ Projection ]
+         */
+        commentRepository.findByPost_Id(1l);
+        /**
+         * 프로젝션을 사용하지 않았을 때에는 모든 컬럼의 데이터를 다 select 한다.
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     left outer join
+         *         post post1_
+         *             on comment0_.post_id=post1_.id
+         *     where
+         *         post1_.id=?
+         */
+
     }
 
 }
