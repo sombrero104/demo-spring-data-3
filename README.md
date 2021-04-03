@@ -544,6 +544,11 @@ void getComment() {
 ## Open 프로젝션
 다 가져온 다음에 그중에 조합을 해서 특정 컬럼에 대해 연산을 해서 보는 것.<br/>
 예를 들어, last_name과 first_name을 합쳐서 full_name으로 가져오는 것. 
+<br/>
+
+## Closed 프로젝션 + Open 프로젝션 (추천)
+인터페이스의 default 메소드를 사용하여 <br/>
+Closed 프로젝션의 장점(특정 컬럼만 select)과 Open 프로젝션의 장점(커스텀한 구현체를 만들어서 메소드를 추가)을 다 사용할 수 있는 방법.
 <br/><br/>
 
 <pre>
