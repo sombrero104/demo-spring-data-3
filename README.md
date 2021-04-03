@@ -668,7 +668,7 @@ QueryDSL과 비슷하면서 세팅이 좀 번거롭고, 세팅을 하고나면 �
 아래와 같이 'target/generated-sources' 밑에 엔티티를 가지고 생성한 클래스들이 만들어진다. <br/><br/>
 <img src="./images/spec.png" /><br/>
 
-패키징을 할 때에는 메이븐 플러그인이 필요할 수도 있다.
+패키징을 할 때에는 아래와 같이 메이븐 플러그인이 필요할 수도 있다.
 <pre>
 ❮plugin❯
     ❮groupId❯org.bsc.maven❮/groupId❯
