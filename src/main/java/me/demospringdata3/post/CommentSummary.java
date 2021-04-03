@@ -16,7 +16,11 @@ public interface CommentSummary {
      * Open 프로젝션을 추가하게 되면 Comment 컬럼을 전부 select하게 된다.
      * 먼저 한정지어서 가져오는게 아니기 때문에 Closed가 아닌 Open 프로젝션이다.
      */
-    @Value("#{target.up + ' ' + target.down}")
-    String getVotes();
+    /*@Value("#{target.up + ' ' + target.down}")
+    String getVotes();*/
+
+    default String getVotes() {
+        return getUp() + " " + getDown();
+    }
 
 }
