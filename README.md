@@ -811,7 +811,7 @@ public void specs() {
 # Query by Example
 QBE는 필드 이름을 작성할 필요없이(작성해야 한다.) 단순한 인터페이스를 통해 <br/>
 동적으로 쿼리를 만드는 기능을 제공하는 사용자 친화적인 쿼리 기술이다.(?) <br/>
-조건이 제한적이고 그다지 권장하지 않아서 지금은 생략. <br/>
+QueryDSL의 Predicate 이나 Specification 보다 조건이 제한적이고 그다지 권장하지 않아서 지금은 생략. <br/>
 <br/><br/><br/><br/>
 
 # 트랜잭션 
