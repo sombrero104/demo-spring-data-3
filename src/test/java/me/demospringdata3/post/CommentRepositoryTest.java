@@ -81,6 +81,20 @@ class CommentRepositoryTest {
          *     where
          *         post1_.id=?
          */
+        /**
+         * 프로젝션을 사용하면 특정 컬럼만 select 한다.
+         * select
+         *         comment0_.comment as col_0_0_,
+         *         comment0_.up as col_1_0_,
+         *         comment0_.down as col_2_0_
+         *     from
+         *         comment comment0_
+         *     left outer join
+         *         post post1_
+         *             on comment0_.post_id=post1_.id
+         *     where
+         *         post1_.id=?
+         */
 
     }
 

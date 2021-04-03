@@ -12,6 +12,13 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @EntityGraph(attributePaths = "post") // @NamedEntityGraph로 이름 설정없이 이렇게 한줄로 사용해도 된다.
     Optional<Comment> getById(Long id);
 
-    List<Comment> findByPost_Id(Long id);
+    /**
+     * [ Projection ]
+     */
+    // 프로젝션을 사용하지 않은 경우, 모든 Comment의 컬럼 데이터를 다 select해서 가져오게 된다.
+    // List<Comment> findByPost_Id(Long id);
 
+    // Closed 프로젝션을 사용할 경우, CommentSummary에 있는 컬럼만 select해서 가져온다.
+    // Closed 프로젝션 => 딱 이거이거만 가져오겠다고 정의해두는 방식.
+    List<CommentSummary> findByPost_Id(Long id);
 }
