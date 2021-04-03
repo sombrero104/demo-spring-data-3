@@ -667,5 +667,36 @@ QueryDSL과 비슷하면서 세팅이 좀 번거롭고, 세팅을 하고나면 �
 그리고 메이븐 Clean한 후 프로젝트를 빌드하면 애노테이션 프로세서가 동작하면서 <br/>
 아래와 같이 'target/generated-sources' 밑에 엔티티를 가지고 생성한 클래스들이 만들어진다. <br/><br/>
 <img src="./images/spec.png" /><br/>
+
+패키징을 할 때에는 메이븐 플러그인이 필요할 수도 있다.
+<pre>
+❮plugin❯
+    ❮groupId❯org.bsc.maven❮/groupId❯
+    ❮artifactId❯maven-processor-plugin❮/artifactId❯
+    ❮version❯2.0.5❮/version❯
+    ❮executions❯
+        ❮execution❯
+            ❮id❯process❮/id❯
+            ❮goals❯
+                ❮goal❯process❮/goal❯
+            ❮/goals❯
+            ❮phase❯generate-sources❮/phase❯
+            ❮configuration❯
+                ❮processors❯
+❮processor❯org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor❮/processor❯
+                ❮/processors❯
+            ❮/configuration❯
+        ❮/execution❯
+    ❮/executions❯
+    ❮dependencies❯
+        ❮dependency❯
+            ❮groupId❯org.hibernate❮/groupId❯
+            ❮artifactId❯hibernate-jpamodelgen❮/artifactId❯
+            ❮version❯${hibernate.version}❮/version❯
+        ❮/dependency❯
+    ❮/dependencies❯
+❮/plugin❯ 
+</pre>
+
 <br/><br/><br/><br/>
 
