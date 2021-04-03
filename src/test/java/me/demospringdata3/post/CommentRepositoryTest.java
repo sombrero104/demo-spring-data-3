@@ -3,9 +3,13 @@ package me.demospringdata3.post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Optional;
 
+import static me.demospringdata3.post.CommentSpecs.isBest;
+import static me.demospringdata3.post.CommentSpecs.isGood;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -134,6 +138,72 @@ class CommentRepositoryTest {
             // System.out.println(c.getVotes());
             System.out.println(c.getComment());
         });
+    }
+
+    @Test
+    public void specs() {
+        // commentRepository.findAll(CommentSpecs.isBest());
+        /**
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     where
+         *         comment0_.best=1
+         */
+
+        // commentRepository.findAll(CommentSpecs.isBest().and(CommentSpecs.isGood()));
+        /**
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     where
+         *         comment0_.best=1
+         *         and comment0_.up>=10
+         */
+
+        // commentRepository.findAll(CommentSpecs.isBest().or(CommentSpecs.isGood()));
+        /**
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     where
+         *         comment0_.best=1
+         *         or comment0_.up>=10
+         */
+
+        Page<Comment> page = commentRepository.findAll(isBest().or(isGood()), PageRequest.of(0, 10));
+        /**
+         * select
+         *         comment0_.id as id1_0_,
+         *         comment0_.best as best2_0_,
+         *         comment0_.comment as comment3_0_,
+         *         comment0_.down as down4_0_,
+         *         comment0_.post_id as post_id6_0_,
+         *         comment0_.up as up5_0_
+         *     from
+         *         comment comment0_
+         *     where
+         *         comment0_.best=1
+         *         or comment0_.up>=10 limit ?
+         */
     }
 
 }
