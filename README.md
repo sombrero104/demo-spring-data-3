@@ -537,5 +537,13 @@ void getComment() {
 예를 들어, 'SELECT c.id c.comment FROM Comment AS c'와 같이 Comment에서 id와 comment만 가져오는 것.
 <br/>
 
+## Closed 프로젝션 
+<br/>
+
+## Open 프로젝션
+다 가져온 다음에 그중에 조합을 해서 내가 보고 싶은 것만 연산을 해서 보는 것.
+예를 들어, last_name과 first_name을 합쳐서 full_name으로 가져오는 것. 
+<br/>
+
 
 <br/><br/><br/><br/>
