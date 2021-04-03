@@ -63,7 +63,7 @@ class CommentRepositoryTest {
         /**
          * [ Projection ]
          */
-        commentRepository.findByPost_Id(1l);
+        // commentRepository.findByPost_Id(1l);
         /**
          * 프로젝션을 사용하지 않았을 때에는 모든 컬럼의 데이터를 다 select 한다.
          * select
@@ -112,6 +112,21 @@ class CommentRepositoryTest {
          *     where
          *         post1_.id=?
          */
+
+        Post post = new Post();
+        post.setTitle("jpa");
+        Post savedPost = postRepository.save(post);
+
+        Comment comment = new Comment();
+        comment.setPost(savedPost);
+        comment.setUp(10);
+        comment.setDown(1);
+        commentRepository.save(comment);
+
+        commentRepository.findByPost_Id(savedPost.getId()).forEach(c -> {
+            System.out.println("================================");
+            System.out.println(c.getVotes());
+        });
     }
 
 }
