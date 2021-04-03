@@ -533,7 +533,8 @@ void getComment() {
 <br/><br/><br/><br/>
 
 # Projection
-엔티티의 일부 데이터만 가져오기.
+엔티티의 일부 데이터만 가져오기.<br/>
+예를 들어, 'SELECT c.id c.comment FROM Comment AS c'와 같이 Comment에서 id와 comment만 가져오는 것.
 <br/>
 
 
