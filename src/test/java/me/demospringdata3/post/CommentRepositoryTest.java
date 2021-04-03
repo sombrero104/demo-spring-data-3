@@ -65,7 +65,7 @@ class CommentRepositoryTest {
          */
         // commentRepository.findByPost_Id(1l);
         /**
-         * 프로젝션을 사용하지 않았을 때에는 모든 컬럼의 데이터를 다 select 한다.
+         * 1. 프로젝션을 사용하지 않았을 때에는 모든 컬럼의 데이터를 다 select 한다.
          * select
          *         comment0_.id as id1_0_,
          *         comment0_.best as best2_0_,
@@ -82,7 +82,7 @@ class CommentRepositoryTest {
          *         post1_.id=?
          */
         /**
-         * Closed 프로젝션을 사용하면 특정 컬럼만 select 한다.
+         * 2. Closed 프로젝션을 사용하면 특정 컬럼만 select 한다.
          * select
          *         comment0_.comment as col_0_0_,
          *         comment0_.up as col_1_0_,
@@ -96,7 +96,7 @@ class CommentRepositoryTest {
          *         post1_.id=?
          */
         /**
-         * Open 프로젝션을 사용하면 일단 다 select해서 가져온다.
+         * 3. Open 프로젝션을 사용하면 일단 다 select해서 가져온다.
          * select
          *         comment0_.id as id1_0_,
          *         comment0_.best as best2_0_,
@@ -111,6 +111,10 @@ class CommentRepositoryTest {
          *             on comment0_.post_id=post1_.id
          *     where
          *         post1_.id=?
+         */
+        /**
+         * 4. default 메소드를 사용하는 방법 (Closed 프로젝션 + Open 프로젝션)
+         * Closed 프로젝션의 장점(특정 컬럼만 select)과 Open 프로젝션의 장점(커스텀한 구현체를 만들어서 메소드를 추가)을 다 사용할 수 있는 방법.
          */
 
         Post post = new Post();
