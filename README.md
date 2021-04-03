@@ -534,17 +534,101 @@ void getComment() {
 
 # Projection
 엔티티의 일부 데이터만 가져오기.<br/>
-예를 들어, 'SELECT c.id c.comment FROM Comment AS c'와 같이 Comment에서 id와 comment만 가져오는 것.
 <br/>
 
 ## Closed 프로젝션 
+특정 컬럼만 select 하는 것. <br/>
+예를 들어, 'SELECT c.id c.comment FROM Comment AS c'와 같이 Comment에서 id와 comment만 가져오는 것.
 <br/>
 
 ## Open 프로젝션
-다 가져온 다음에 그중에 조합을 해서 내가 보고 싶은 것만 연산을 해서 보는 것.
+다 가져온 다음에 그중에 조합을 해서 특정 컬럼에 대해 연산을 해서 보는 것.<br/>
 예를 들어, last_name과 first_name을 합쳐서 full_name으로 가져오는 것. 
 <br/>
 
+<pre>
+/**
+ * [ Projection ]
+ * 인터페이스 버전. 클래스로 만들어도 되지만 인터페이스로 만들 때보다 코드가 더 많아진다.
+ */
+public interface CommentSummary {
 
+    String getComment();
+
+    int getUp();
+
+    int getDown();
+
+    /**
+     * [ Open 프로젝션 ]
+     * 여기서의 target은 Comment인데, target을 일단 가져와야 하므로
+     * Open 프로젝션을 추가하게 되면 Comment 컬럼을 전부 select하게 된다.
+     * 먼저 한정지어서 가져오는게 아니기 때문에 Closed가 아닌 Open 프로젝션이다.
+     */
+    /*@Value("#{target.up + ' ' + target.down}")
+    String getVotes();*/
+
+    /**
+     * [ default 메소드를 사용하는 방법 (Closed 프로젝션 + Open 프로젝션) (추천) ]
+     * Closed 프로젝션의 장점(특정 컬럼만 select)과 Open 프로젝션의 장점(커스텀한 구현체를 만들어서 메소드를 추가)을 다 사용할 수 있는 방법.
+     */
+    default String getVotes() {
+        return getUp() + " " + getDown();
+    }
+
+}
+</pre>
+<pre>
+public interface CommentRepository extends JpaRepository❮Comment, Long❯ {
+    ...
+    /**
+     * [ Projection ]
+     */
+    // 프로젝션을 사용하지 않은 경우, 모든 Comment의 컬럼 데이터를 다 select해서 가져오게 된다.
+    // List❮Comment❯ findByPost_Id(Long id);
+
+    // Closed 프로젝션을 사용할 경우, CommentSummary에 있는 컬럼만 select해서 가져온다.
+    // Closed 프로젝션 =❯ 딱 이거이거만 가져오겠다고 정의해두는 방식.
+    // List❮CommentSummary❯ findByPost_Id(Long id);
+    // List❮CommentOnly❯ findByPost_Id(Long id);
+
+    /**
+     * 프로젝션이 여러개일 경우 제네릭을 사용한다.
+     * 파라미터로 프로젝션 타입을 받아서 해당 프로젝션 타입으로 반환할 수 있다.
+     */
+    ❮T❯ List❮T❯ findByPost_Id(Long id, Class❮T❯ type);
+}
+</pre>
+<pre>
+@Test
+void getComment() {
+    ...
+    /**
+     * 4. default 메소드를 사용하는 방법 (Closed 프로젝션 + Open 프로젝션) (추천)
+     * Closed 프로젝션의 장점(특정 컬럼만 select)과 Open 프로젝션의 장점(커스텀한 구현체를 만들어서 메소드를 추가)을 다 사용할 수 있는 방법.
+     */
+    Post post = new Post();
+    post.setTitle("jpa");
+    Post savedPost = postRepository.save(post);
+    
+    Comment comment = new Comment();
+    comment.setComment("Spring data jpa projection");
+    comment.setPost(savedPost);
+    comment.setUp(10);
+    comment.setDown(1);
+    commentRepository.save(comment);
+    
+    // commentRepository.findByPost_Id(savedPost.getId(), CommentSummary.class).forEach(c -> {
+    commentRepository.findByPost_Id(savedPost.getId(), CommentOnly.class).forEach(c -> {
+        System.out.println("================================");
+        // System.out.println(c.getVotes());
+        System.out.println(c.getComment());
+    });
+}
+</pre>
+<br/><br/><br/><br/>
+
+# Specifications
+<br/>
 
 <br/><br/><br/><br/>
