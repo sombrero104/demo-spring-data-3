@@ -30,6 +30,17 @@
             <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
 
+        <!-- [ JPA Model Generator ]
+            타입 세이프(type safe)한 쿼리를 제공.
+            보통 이렇게 타입 세이프한 쿼리를 제공하는 라이브러리들은
+            엔티티 클래스 기반으로 코드 제너레이션을 해서
+            그 프로퍼티들을 타입 세이프하게 쓸 수 있게 도와준다.
+        -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
