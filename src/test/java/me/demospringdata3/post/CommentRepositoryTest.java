@@ -122,14 +122,17 @@ class CommentRepositoryTest {
         Post savedPost = postRepository.save(post);
 
         Comment comment = new Comment();
+        comment.setComment("Spring data jpa projection");
         comment.setPost(savedPost);
         comment.setUp(10);
         comment.setDown(1);
         commentRepository.save(comment);
 
-        commentRepository.findByPost_Id(savedPost.getId()).forEach(c -> {
+        // commentRepository.findByPost_Id(savedPost.getId(), CommentSummary.class).forEach(c -> {
+        commentRepository.findByPost_Id(savedPost.getId(), CommentOnly.class).forEach(c -> {
             System.out.println("================================");
-            System.out.println(c.getVotes());
+            // System.out.println(c.getVotes());
+            System.out.println(c.getComment());
         });
     }
 

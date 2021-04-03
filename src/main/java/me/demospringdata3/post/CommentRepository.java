@@ -20,5 +20,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     // Closed 프로젝션을 사용할 경우, CommentSummary에 있는 컬럼만 select해서 가져온다.
     // Closed 프로젝션 => 딱 이거이거만 가져오겠다고 정의해두는 방식.
-    List<CommentSummary> findByPost_Id(Long id);
+    // List<CommentSummary> findByPost_Id(Long id);
+    // List<CommentOnly> findByPost_Id(Long id);
+
+    /**
+     * 프로젝션이 여러개일 경우 제네릭을 사용한다.
+     * 파라미터로 프로젝션 타입을 받아서 해당 프로젝션 타입으로 반환할 수 있다.
+     */
+    <T> List<T> findByPost_Id(Long id, Class<T> type);
 }
