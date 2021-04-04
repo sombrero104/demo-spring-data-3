@@ -3,6 +3,7 @@ package me.demospringdata3.post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -12,7 +13,8 @@ import static me.demospringdata3.post.CommentSpecs.isBest;
 import static me.demospringdata3.post.CommentSpecs.isGood;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
+// @DataJpaTest // 데이터 계층에 관련된 빈만 등록해 주고 그 밖의 빈들은 등록 안해줌. (슬라이싱 테스트)
+@SpringBootTest // 모든 빈들을 다 등록해줌. (통합 테스트, Integration test)
 class CommentRepositoryTest {
 
     @Autowired
