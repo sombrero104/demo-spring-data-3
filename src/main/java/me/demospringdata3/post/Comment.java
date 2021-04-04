@@ -1,6 +1,12 @@
 package me.demospringdata3.post;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @NamedEntityGraph
@@ -25,6 +31,26 @@ public class Comment {
     private int down;
 
     private boolean best;
+
+    /**
+     * [ Auditing ]
+     * 엔티티에 변화가 생길 때마다 아래 정보들을 기록.
+     * created, createdBy, updated, updatedBy
+     */
+    @CreatedDate
+    private Date created;
+
+    @CreatedBy
+    @ManyToOne
+    private Account createdBy;
+
+    @LastModifiedDate
+    private Date updated;
+
+    @LastModifiedBy
+    private Account updatedBy;
+
+
 
     public Long getId() {
         return id;
