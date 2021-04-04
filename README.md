@@ -850,6 +850,21 @@ true로 주면 성능 최적화에 도움된다. <br/>
 트랜잭션으로 시작한 어떠한 메소드가 있는데 @Transactional을 가지고 있는 다른 메소드를 호출했을 때 <br/>
 기존에 있던 트랜잭션을 이어갈 것인지 아니면 기존에 있던 트랜잭션을 쓰지 않고 새로운 트랜잭션을 만들어서 사용할 것인지를 설정. <br/>
 
+<pre>
+/**
+ * [ @Transactional ]
+ * JPA 구현체로 Hibernate를 사용할 때 트랜잭션을 readOnly를 사용하면 좋은 점.
+ *  => Flush 모드를 'NEVER'로 설정하여, Dirty checking을 하지 않도록 한다.
+ *      - Flush 모드: 데이터베이스에 싱크를 하는 모드. 언제 데이터베이스에 싱크를 할 것인가.
+ *          적절한 타이밍에 하게 되는데 보통은 커밋할 때, 또는 데이터를 read하기 전에 Flush를 한다.
+ *          readOnly의 경우 데이터 변경이 일어나지 않기 때문에 Flush할 필요가 없다.
+ *          그렇기 때문에 Persistent는 Dirty checking을 할 필요도 없다.
+ *          (변경이 없으므로 변경을 감지해야 할 필요가 없는 것.)
+ *          특히 데이터가 많은 경우에는 Dirty checking을 끄면 성능에 많은 도움이 된다.
+ */
+@Transactional(readOnly = true)
+❮T❯ List❮T❯ findByPost_Id(Long id, Class❮T❯ type);
+</pre>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
 <br/><br/><br/><br/>
