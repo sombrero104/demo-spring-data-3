@@ -4,6 +4,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
 /*@NamedEntityGraph(name = "Comment.post",
         attributeNodes = @NamedAttributeNode("post"))*/
 @Entity
+@EntityListeners(AuditingEntityListener.class) // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
 public class Comment {
 
     @Id @GeneratedValue
