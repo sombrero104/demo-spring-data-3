@@ -945,6 +945,7 @@ https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference
 ## JPA의 라이프 사이클 이벤트
 어떤 엔티티에 변화가 일어났을 때 특정 콜백을 실행할 수 있는 이벤트를 발생시켜 준다. <br/>
 (Auditing보다 좀 더 제너럴한 기능.) <br/>
+콜백에는 @PrePersist, @PreRemove, @PostPersist, @PostRemove, @PreUpdate, @PostUpdate, @PostLoad가 있다. <br/>
 https://docs.jboss.org/hibernate/orm/4.0/hem/en-US/html/listeners.html <br/>
 <pre>
 @Entity
