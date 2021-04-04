@@ -838,7 +838,7 @@ true로 주면 성능 최적화에 도움된다.
 - isolation은 여러개의 트랜잭션이 동시에 접근했을 때 어떻게 제어할 것인지를 설정하는 옵션이다. 
 옵션값으로는 DEFAULT, READ_COMMITED, READ_UNCOMMITED, REPEATABLE_READ, SERIALIZABLE 이 있다. 
 기본값은 DEFAULT로 데이터베이스의 기본값을 따른다. (DB마다 다 다르지만 보통 READ_COMMITED가 기본인 경우가 많다.)
-- 성능 순서: READ_UNCOMMITED > READ_COMMITED > REPEATABLE_READ > SERIALIZABLE
+- isolation 성능 순서: READ_UNCOMMITED > READ_COMMITED > REPEATABLE_READ > SERIALIZABLE
     - READ_UNCOMMITED: dirty reads, non-repeatable reads, phantom reads는 발생할 수 있음. 
     - READ_COMMITED: dirty reads 방지. non-repeatable reads, phantom reads는 발생할 수 있음. 
     - REPEATABLE_READ: dirty reads, non-repeatable reads 방지. phantom reads는 발생할 수 있음. 
