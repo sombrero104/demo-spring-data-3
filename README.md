@@ -907,5 +907,22 @@ public class Comment {
     private Account updatedBy;
 }
 </pre>
+원래는 아래와 같이 스프링 시큐리티에서 현재 사용자를 리턴해야 한다.
+<pre>
+class SpringSecurityAuditorAware implements AuditorAware❮User❯ {
 
+  public User getCurrentAuditor() {
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    if (authentication == null || !authentication.isAuthenticated()) {
+      return null;
+    }
+
+    return ((MyUserDetails) authentication.getPrincipal()).getUser();
+  }
+  
+}
+</pre>
+https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference/html/auditing.html 
 <br/><br/><br/><br/>
