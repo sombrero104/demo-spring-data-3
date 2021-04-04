@@ -816,7 +816,7 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 
 # 트랜잭션 
 스프링 데이터 JPA가 제공하는 Repository의 모든 메소드에는 기본적으로 @Transactional이 적용되어 있다. <br/>
-우리가 사용하는 JpaRepository의 구현체인 SimpleJpaRepository에 이미 @Transactional이 이미 적용이 되어 있다. <br/>
+우리가 사용하는 JpaRepository의 구현체인 SimpleJpaRepository에 이미 '@Transactional(readOnly = true)'이 이미 적용이 되어 있다. <br/>
 <br/><br/><br/><br/>
 
 # Auditing
