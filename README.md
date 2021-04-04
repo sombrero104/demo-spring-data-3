@@ -815,6 +815,9 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 <br/><br/><br/><br/>
 
 # 트랜잭션 
+<br/>
+
+# @Transactional
 - 스프링 데이터 JPA가 제공하는 Repository의 모든 메소드에는 기본적으로 @Transactional이 적용되어 있다. <br/>
 - 우리가 사용하는 JpaRepository의 구현체인 SimpleJpaRepository에 <br/>
 '@Transactional(readOnly = true)'이 이미 적용이 되어 있다. <br/>
@@ -829,6 +832,19 @@ noRollbackFor, noRollbackForClassName을 줄 수 있다. <br/>
 - @Transactional에는 timeout 옵션도 있다. <br/>
 - @Transactional에는 transactionManager를 설정할 수 있는 옵션도 있는데 <br/>
 우리는 기본적으로 JpaTransactionManager를 사용한다. <br/>
+- 가급적이면 데이터를 변경하는 오퍼레이션이 없으면 readOnly(데이터를 읽기만 할 것인지에 대한 설정)로 
+true로 주면 성능 최적화에 도움된다. 
+(단, 특정 DB에서는 isolation 레벨이 READ_UNCOMMITED로 동작할 수도 있다?)
+- isolation은 여러개의 트랜잭션이 동시에 접근했을 때 어떻게 제어할 것인지를 설정하는 옵션이다. 
+옵션값으로는 DEFAULT, READ_COMMITED, READ_UNCOMMITED, REPEATABLE_READ, SERIALIZABLE 이 있다. 
+기본값은 DEFAULT로 데이터베이스의 기본값을 따른다. (DB마다 다 다르지만 보통 READ_COMMITED가 기본인 경우가 많다.)
+- 성능 순서: READ_UNCOMMITED > READ_COMMITED > REPEATABLE_READ > SERIALIZABLE
+    - READ_UNCOMMITED: dirty reads, non-repeatable reads, phantom reads는 발생할 수 있음. 
+    - READ_COMMITED: dirty reads 방지. non-repeatable reads, phantom reads는 발생할 수 있음. 
+    - REPEATABLE_READ: dirty reads, non-repeatable reads 방지. phantom reads는 발생할 수 있음. 
+    - SERIALIZABLE: 전부 방지. DB에 동시에 접근할 수 있는 트랜잭션이 하나뿐이기 때문에 가장 성능이 좋지 않다. 
+<br/>
+http://wiki.gurubee.net/pages/viewpage.action?pageId=21200923 
 <br/>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
