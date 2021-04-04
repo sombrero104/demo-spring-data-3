@@ -103,4 +103,14 @@ public class Comment {
         this.best = best;
     }
 
+    @PrePersist
+    public void prePersist() {
+        System.out.println("=============================");
+        System.out.println("Pre Persist is called!!");
+        System.out.println("=============================");
+        this.created = new Date();
+        // this.createdBy = SecurityContextHolder.getContext().getAuthentication();
+        // 스프링 시큐리티에서 현재 사용자 꺼내오기.
+    }
+
 }
