@@ -873,4 +873,5 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 <br/><br/><br/><br/>
 
 # Auditing
+엔티티에 변화가 발생했을 때 언제, 누가 변경했는지에 대한 정보를 기록하는 기능.
 <br/><br/><br/><br/>
