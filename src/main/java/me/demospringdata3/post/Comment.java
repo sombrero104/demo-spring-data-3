@@ -48,6 +48,7 @@ public class Comment {
     private Date updated;
 
     @LastModifiedBy
+    @ManyToOne
     private Account updatedBy;
 
 
