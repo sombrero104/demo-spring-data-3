@@ -103,6 +103,10 @@ public class Comment {
         this.best = best;
     }
 
+    /**
+     * 엔티티가 생성될 때 (Persistent 상태가 될 때)
+     * 바로 이전에 실행된다.
+     */
     @PrePersist
     public void prePersist() {
         System.out.println("=============================");
