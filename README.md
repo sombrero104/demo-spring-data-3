@@ -822,6 +822,7 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 - @Transactional은 클래스, 인터페이스, 메소드에 사용할 수 있으며, 메소드에 가장 가까운 애노테이션이 우선 순위가 높다. <br/>
 - @Transactional은 RuntimeException과 Error가 발생하면 해당 트랜잭션을 롤백 시킨다. <br/>
 (checked exception은 롤백하지 않는다.)<br/>
+<br/>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
 <br/><br/><br/><br/>
