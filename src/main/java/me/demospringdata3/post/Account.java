@@ -1,8 +1,6 @@
 package me.demospringdata3.post;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Account {
@@ -13,6 +11,12 @@ public class Account {
     private String username;
 
     private String password;
+
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "street", column = @Column(name = "home_street"))
+    })
+    private Address address;
 
     public Long getId() {
         return id;
