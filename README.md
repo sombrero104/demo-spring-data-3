@@ -834,7 +834,6 @@ noRollbackFor, noRollbackForClassName을 줄 수 있다. <br/>
 우리는 기본적으로 JpaTransactionManager를 사용한다. <br/>
 - 가급적이면 데이터를 변경하는 오퍼레이션이 없으면 readOnly(데이터를 읽기만 할 것인지에 대한 설정)로 <br/>
 true로 주면 성능 최적화에 도움된다. <br/>
-(단, 특정 DB에서는 isolation 레벨이 READ_UNCOMMITED로 동작할 수도 있다.)<br/>
 - isolation은 여러개의 트랜잭션이 동시에 접근했을 때 어떻게 제어할 것인지를 설정하는 옵션이다. <br/>
 옵션값으로는 DEFAULT, READ_COMMITED, READ_UNCOMMITED, REPEATABLE_READ, SERIALIZABLE 이 있다. <br/>
 기본값은 DEFAULT로 데이터베이스의 기본값을 따른다. (DB마다 다 다르지만 보통 READ_COMMITED가 기본인 경우가 많다.)<br/>
