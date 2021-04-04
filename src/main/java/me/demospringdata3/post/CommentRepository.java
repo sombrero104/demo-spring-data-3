@@ -44,4 +44,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpec
      */
     @Transactional(readOnly = true)
     <T> List<T> findByPost_Id(Long id, Class<T> type);
+
 }
