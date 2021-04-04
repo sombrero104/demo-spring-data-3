@@ -874,4 +874,37 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 
 # Auditing
 엔티티에 변화가 발생했을 때 언제, 누가 변경했는지에 대한 정보를 기록하는 기능.
+
+<pre>
+@SpringBootApplication
+@EnableJpaAuditing // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
+public class App {
+    ...
+}
+</pre>
+<pre>
+@Entity
+@EntityListeners(AuditingEntityListener.class) // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
+public class Comment {
+    /**
+     * [ Auditing ]
+     * 엔티티에 변화가 생길 때마다 아래 정보들을 기록.
+     * created, createdBy, updated, updatedBy
+     */
+    @CreatedDate
+    private Date created;
+
+    @CreatedBy
+    @ManyToOne
+    private Account createdBy;
+
+    @LastModifiedDate
+    private Date updated;
+
+    @LastModifiedBy
+    @ManyToOne
+    private Account updatedBy;
+}
+</pre>
+
 <br/><br/><br/><br/>
