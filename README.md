@@ -843,9 +843,9 @@ true로 주면 성능 최적화에 도움된다.
     - READ_COMMITED: dirty reads 방지. non-repeatable reads, phantom reads는 발생할 수 있음. 
     - REPEATABLE_READ: dirty reads, non-repeatable reads 방지. phantom reads는 발생할 수 있음. 
     - SERIALIZABLE: 전부 방지. DB에 동시에 접근할 수 있는 트랜잭션이 하나뿐이기 때문에 가장 성능이 좋지 않다. 
-<br/>
-http://wiki.gurubee.net/pages/viewpage.action?pageId=21200923 
-<br/>
+    <br/>
+    http://wiki.gurubee.net/pages/viewpage.action?pageId=21200923 
+    <br/>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
 <br/><br/><br/><br/>
