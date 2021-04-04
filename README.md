@@ -816,7 +816,8 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 
 # 트랜잭션 
 스프링 데이터 JPA가 제공하는 Repository의 모든 메소드에는 기본적으로 @Transactional이 적용되어 있다. <br/>
-우리가 사용하는 JpaRepository의 구현체인 SimpleJpaRepository에 이미 '@Transactional(readOnly = true)'이 이미 적용이 되어 있다. <br/>
+우리가 사용하는 JpaRepository의 구현체인 SimpleJpaRepository에 <br/>
+'@Transactional(readOnly = true)'이 이미 적용이 되어 있다. <br/>
 readOnly가 없고 @Transactional만 붙어있는 메소드들도 있다. <br/>
 @Transactional은 클래스, 인터페이스, 메소드에 사용할 수 있으며, 메소드에 가장 가까운 애노테이션이 우선 순위가 높다. <br/>
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
