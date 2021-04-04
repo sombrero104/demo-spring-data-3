@@ -846,6 +846,10 @@ true로 주면 성능 최적화에 도움된다.
     <br/>
     http://wiki.gurubee.net/pages/viewpage.action?pageId=21200923 
     <br/>
+- propagation은 트랜잭션을 어떻게 전파시킬 것인지를 설정하는 옵션이다. <br/>
+트랜잭션으로 시작한 어떠한 메소드가 있는데 @Transactional을 가지고 있는 다른 메소드를 호출했을 때 <br/>
+기존에 있던 트랜잭션을 이어갈 것인지 아니면 기존에 있던 트랜잭션을 쓰지 않고 새로운 트랜잭션을 만들어서 사용할 것인지를 설정. <br/>
+
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
 <br/><br/><br/><br/>
