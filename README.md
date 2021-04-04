@@ -824,6 +824,8 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 (checked exception은 롤백하지 않는다.)<br/>
 - 만약 checked exception에도 롤백을 하고 싶은 경우에는 @Transactional 옵션으로 <br/>
 rollbackFor, rollbackForClassName을 줄 수 있다. <br/>
+- RuntimeException임에도 롤백을 하고 싶지 않은 경우에는 @Transactional 옵션으로 <br/>
+noRollbackFor, noRollbackForClassName을 줄 수 있다. <br/>
 <br/>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
