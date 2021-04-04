@@ -24,6 +24,16 @@ public class Comment {
 
     private String comment;
 
+    /**
+     * Enum 맵핑.
+     * 기본값은 ORDINAL인데 Enum 값을 순서대로 0, 1, 2 값을 사용한다.
+     * 추후 만약 Enum 값의 순서가 바뀌거나 수정될 수도 있기 때문에
+     * 문자열값으로 사용하는 것이 안전하다.
+     * 때문에 Enum을 사용할 때에는 'EnumType.STRING'으로 설정해서 사용하는 것이 좋다.
+     */
+    @Enumerated(value = EnumType.STRING)
+    private CommentStatus commentStatus;
+
     // @ManyToOne(fetch = FetchType.EAGER) // @ManyToOne은 기본 Fetch 모드는 EAGER이다.
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
