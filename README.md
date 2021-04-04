@@ -886,6 +886,7 @@ public class App {
 @Entity
 @EntityListeners(AuditingEntityListener.class) // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
 public class Comment {
+    ...
     /**
      * [ Auditing ]
      * 엔티티에 변화가 생길 때마다 아래 정보들을 기록.
