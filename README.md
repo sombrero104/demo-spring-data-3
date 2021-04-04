@@ -877,7 +877,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 
 <pre>
 @SpringBootApplication
-@EnableJpaAuditing // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
+@EnableJpaAuditing(auditorAwareRef = "accountAuditAware") // Auditing 기능을 사용하려면 이 애노테이션을 붙여줘야 한다.
 public class App {
     ...
 }
@@ -905,6 +905,20 @@ public class Comment {
     @LastModifiedBy
     @ManyToOne
     private Account updatedBy;
+}
+</pre>
+이 예시에서는 스프링 시큐리티 없이 테스트 했다.
+<pre>
+@Service
+public class AccountAuditAware implements AuditorAware❮Account❯ {
+
+    @Override
+    public Optional❮Account❯ getCurrentAuditor() {
+        System.out.println("=============================");
+        System.out.println("We need spring security..");
+        return Optional.empty();
+    }
+
 }
 </pre>
 원래는 아래와 같이 스프링 시큐리티에서 현재 사용자를 리턴해야 한다.
