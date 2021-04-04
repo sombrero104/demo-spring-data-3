@@ -826,6 +826,9 @@ QueryDSL의 Predicate 이나 Specifications 보다 조건이 제한적이고 그
 rollbackFor, rollbackForClassName을 줄 수 있다. <br/>
 - RuntimeException임에도 롤백을 하고 싶지 않은 경우에는 @Transactional 옵션으로 <br/>
 noRollbackFor, noRollbackForClassName을 줄 수 있다. <br/>
+- @Transactional에는 timeout 옵션도 있다. <br/>
+- @Transactional에는 transactionManager를 설정할 수 있는 옵션도 있는데 <br/>
+우리는 기본적으로 JpaTransactionManager를 사용한다. <br/>
 <br/>
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html <br/>
